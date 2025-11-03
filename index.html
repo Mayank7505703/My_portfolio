@@ -79,6 +79,42 @@
         .hero-text-shadow {
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
         }
+
+        /* --- NEW: Animations --- */
+        
+        /* 1. Hero Load-in Animations */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes hero-image-pop-in {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        
+        .hero-animate-1 { animation: fadeInUp 0.8s 0.2s ease-out backwards; } /* h1 */
+        .hero-animate-2 { animation: fadeInUp 0.8s 0.4s ease-out backwards; } /* p (subtitle) */
+        .hero-animate-3 { animation: fadeInUp 0.8s 0.6s ease-out backwards; } /* p (description) */
+        .hero-animate-4 { animation: fadeInUp 0.8s 0.8s ease-out backwards; } /* buttons */
+        .hero-animate-5 { animation: fadeInUp 0.8s 1.0s ease-out backwards; } /* social icons */
+        .hero-image-animate { animation: hero-image-pop-in 1.2s 0.5s ease-out backwards; }
+
+        /* 2. Scroll-in Animations (JS-controlled) */
+        .js-scroll-fade-up {
+            opacity: 0;
+            transform: translateY(24px); /* 1.5rem or 6 tailwind units */
+            transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+        }
+        /* This class is added by JS when the element is visible */
+        .js-scroll-fade-up.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
     </style>
 </head>
 <body>
@@ -119,23 +155,23 @@
     <main>
 
         <!-- 1. Hero Section -->
-        <section id="hero" class="hero-gradient px-4 md:px-8 pt-24 pb-12 lg:pb-0 flex items-center">
+        <section id="hero" class="hero-gradient px-4 md:px-8 pt-24 pb-12 lg:pb-0 flex items-center overflow-hidden"> <!-- Added overflow-hidden -->
             <div class="max-w-6xl mx-auto flex flex-col lg:flex-row items-center justify-between w-full min-h-[85vh]">
                 
                 <!-- Left Column (Information) -->
                 <div class="lg:w-1/2 text-center lg:text-left pt-10 pb-16 lg:py-32">
-                    <h1 class="text-5xl sm:text-7xl font-extrabold leading-tight text-white hero-text-shadow">
+                    <h1 class="text-5xl sm:text-7xl font-extrabold leading-tight text-white hero-text-shadow hero-animate-1">
                         Hi, I'm <span class="text-indigo-300">Mayank Sharma</span>
                     </h1>
-                    <p class="mt-4 text-3xl sm:text-4xl text-slate-100 font-medium hero-text-shadow">
+                    <p class="mt-4 text-3xl sm:text-4xl text-slate-100 font-medium hero-text-shadow hero-animate-2">
                         | Software Developer
                     </p>
-                    <p class="mt-6 text-slate-200 max-w-lg mx-auto lg:mx-0 text-lg hero-text-shadow">
+                    <p class="mt-6 text-slate-200 max-w-lg mx-auto lg:mx-0 text-lg hero-text-shadow hero-animate-3">
                         Computer Science professional passionate about solving real-world problems using cutting-edge technology.
                     </p>
 
                     <!-- Buttons -->
-                    <div class="mt-10 flex flex-col sm:flex-row justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
+                    <div class="mt-10 flex flex-col sm:flex-row justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-4 hero-animate-4">
                         <a href="#projects" class="px-7 py-3 bg-white text-indigo-700 font-semibold rounded-xl shadow-lg hover:bg-slate-200 transition duration-300 transform hover:scale-[1.02] flex items-center justify-center">
                             View My Work
                             <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.5 12h-11M13 16l4-4-4-4"></path></svg>
@@ -146,7 +182,7 @@
                     </div>
                     
                     <!-- Social Icons Row -->
-                    <div class="mt-10 flex justify-center lg:justify-start space-x-6 text-white">
+                    <div class="mt-10 flex justify-center lg:justify-start space-x-6 text-white hero-animate-5">
                         <!-- LinkedIn -->
                         <a href="https://www.linkedin.com/in/mayank-sharma-8555b6313/" target="_blank" class="hover:text-indigo-300 transition duration-300 transform hover:scale-110" aria-label="LinkedIn Profile">
                             <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.98 0h-5v16h5v-8.243c0-3.151 3.737-3.411 3.737 0v8.243h5v-10.481c0-4.887-5.06-4.596-7.469-2.214z"/></svg>
@@ -168,7 +204,7 @@
 
                 <!-- Right Column (Image) -->
                 <div class="lg:w-1/2 flex justify-center lg:justify-end py-10 lg:py-0">
-                    <div class="hero-image-container relative w-64 h-64 sm:w-80 sm:h-80 bg-white/10 flex items-center justify-center">
+                    <div class="hero-image-container relative w-64 h-64 sm:w-80 sm:h-80 bg-white/10 flex items-center justify-center hero-image-animate">
                          <!-- FIXED: The image is now a background for this div -->
                         <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://i.ibb.co/tMVM0GtY/image6.jpg');">
                         </div>
@@ -191,8 +227,8 @@
                 
                 <!-- 2. About Me Section -->
                 <section id="about" class="section-padding">
-                    <h2 class="text-4xl font-bold text-center mb-12 border-b-2 border-indigo-500/50 pb-2 inline-block mx-auto">About <span class="text-indigo-400">Me</span></h2>
-                    <div class="bg-slate-800 p-8 rounded-2xl shadow-xl border border-slate-700/50 transition duration-300 hover:border-indigo-500/50">
+                    <h2 class="text-4xl font-bold text-center mb-12 border-b-2 border-indigo-500/50 pb-2 inline-block mx-auto js-scroll-fade-up">About <span class="text-indigo-400">Me</span></h2>
+                    <div class="bg-slate-800 p-8 rounded-2xl shadow-xl border border-slate-700/50 transition duration-300 hover:border-indigo-500/50 js-scroll-fade-up" style="transition-delay: 150ms;">
                         <p class="text-lg text-slate-300 leading-relaxed mb-6">
                             I am Mayank Sharma, a passionate and result-oriented developer specializing in creating user-friendly web experiences. My expertise lies in building modern websites and applications from the ground up, ensuring they are both functional and visually appealing.
                         </p>
@@ -207,14 +243,14 @@
                 
                 <!-- 3. Experience Timeline Section -->
                 <section id="experience" class="section-padding">
-                    <h2 class="text-4xl font-bold text-center mb-16 border-b-2 border-indigo-500/50 pb-2 inline-block mx-auto">Work <span class="text-indigo-400">Experience</span></h2>
+                    <h2 class="text-4xl font-bold text-center mb-16 border-b-2 border-indigo-500/50 pb-2 inline-block mx-auto js-scroll-fade-up">Work <span class="text-indigo-400">Experience</span></h2>
                     
                     <div class="relative max-w-3xl mx-auto">
                         
                         <!-- Timeline Item 1 -->
                         <div class="timeline-item relative pl-10 pb-12">
                             <div class="timeline-dot"></div>
-                            <div class="bg-slate-800 p-6 rounded-xl shadow-lg border border-slate-700 transition duration-300 hover:border-indigo-500/50">
+                            <div class="bg-slate-800 p-6 rounded-xl shadow-lg border border-slate-700 transition duration-300 hover:border-indigo-500/50 js-scroll-fade-up" style="transition-delay: 150ms;">
                                 <p class="text-sm text-indigo-400 font-semibold mb-1">Jan 2022 - Present</p>
                                 <h3 class="text-xl font-bold text-white">Junior Web Developer</h3>
                                 <p class="text-md text-slate-400 mb-3">Tech Innovators Inc.</p>
@@ -229,7 +265,7 @@
                         <!-- Timeline Item 2 -->
                         <div class="timeline-item relative pl-10 pb-12">
                             <div class="timeline-dot"></div>
-                            <div class="bg-slate-800 p-6 rounded-xl shadow-lg border border-slate-700 transition duration-300 hover:border-indigo-500/50">
+                            <div class="bg-slate-800 p-6 rounded-xl shadow-lg border border-slate-700 transition duration-300 hover:border-indigo-500/50 js-scroll-fade-up" style="transition-delay: 300ms;">
                                 <p class="text-sm text-indigo-400 font-semibold mb-1">Aug 2019 - Dec 2021</p>
                                 <h3 class="text-xl font-bold text-white">Freelance Developer</h3>
                                 <p class="text-md text-slate-400 mb-3">Self-Employed</p>
@@ -249,12 +285,12 @@
 
                 <!-- 4. Skills Section -->
                 <section id="skills" class="section-padding">
-                    <h2 class="text-4xl font-bold text-center mb-12 border-b-2 border-indigo-500/50 pb-2 inline-block mx-auto">Technical <span class="text-indigo-400">Skills</span></h2>
+                    <h2 class="text-4xl font-bold text-center mb-12 border-b-2 border-indigo-500/50 pb-2 inline-block mx-auto js-scroll-fade-up">Technical <span class="text-indigo-400">Skills</span></h2>
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         
                         <!-- Skill Category: Languages -->
-                        <div class="bg-slate-800 p-6 rounded-2xl shadow-xl border border-slate-700/50 transition duration-300 hover:border-indigo-500/50 hover:-translate-y-1">
+                        <div class="bg-slate-800 p-6 rounded-2xl shadow-xl border border-slate-700/50 transition duration-300 hover:border-indigo-500/50 hover:-translate-y-1 js-scroll-fade-up" style="transition-delay: 150ms;">
                             <h3 class="text-2xl font-semibold mb-4 text-indigo-400">Languages</h3>
                             <div class="flex flex-wrap gap-2">
                                 <span class="bg-slate-700 text-slate-300 text-sm font-medium px-3 py-1 rounded-full">Python</span>
@@ -267,7 +303,7 @@
                         </div>
 
                         <!-- Skill Category: Web Development -->
-                        <div class="bg-slate-800 p-6 rounded-2xl shadow-xl border border-slate-700/50 transition duration-300 hover:border-indigo-500/50 hover:-translate-y-1">
+                        <div class="bg-slate-800 p-6 rounded-2xl shadow-xl border border-slate-700/50 transition duration-300 hover:border-indigo-500/50 hover:-translate-y-1 js-scroll-fade-up" style="transition-delay: 300ms;">
                             <h3 class="text-2xl font-semibold mb-4 text-indigo-400">Web Development</h3>
                             <div class="flex flex-wrap gap-2">
                                 <span class="bg-slate-700 text-slate-300 text-sm font-medium px-3 py-1 rounded-full">React.js</span>
@@ -279,7 +315,7 @@
                         </div>
                         
                         <!-- Skill Category: Tools & Databases -->
-                        <div class="bg-slate-800 p-6 rounded-2xl shadow-xl border border-slate-700/50 transition duration-300 hover:border-indigo-500/50 hover:-translate-y-1">
+                        <div class="bg-slate-800 p-6 rounded-2xl shadow-xl border border-slate-700/50 transition duration-300 hover:border-indigo-500/50 hover:-translate-y-1 js-scroll-fade-up" style="transition-delay: 450ms;">
                             <h3 class="text-2xl font-semibold mb-4 text-indigo-400">Tools & Databases</h3>
                             <div class="flex flex-wrap gap-2">
                                 <span class="bg-slate-700 text-slate-300 text-sm font-medium px-3 py-1 rounded-full">Git</span>
@@ -295,12 +331,12 @@
 
                 <!-- 5. Projects Section -->
                 <section id="projects" class="section-padding">
-                    <h2 class="text-4xl font-bold text-center mb-12 border-b-2 border-indigo-500/50 pb-2 inline-block mx-auto">Featured <span class="text-indigo-400">Projects</span></h2>
+                    <h2 class="text-4xl font-bold text-center mb-12 border-b-2 border-indigo-500/50 pb-2 inline-block mx-auto js-scroll-fade-up">Featured <span class="text-indigo-400">Projects</span></h2>
 
                     <div class="grid md:grid-cols-2 gap-8">
                         
                         <!-- Project Card 1 -->
-                        <div class="bg-slate-800 rounded-2xl overflow-hidden shadow-2xl border border-slate-700/50 transition duration-500 transform hover:-translate-y-2 hover:border-indigo-500">
+                        <div class="bg-slate-800 rounded-2xl overflow-hidden shadow-2xl border border-slate-700/50 transition duration-500 transform hover:-translate-y-2 hover:border-indigo-500 js-scroll-fade-up" style="transition-delay: 150ms;">
                             <div class="p-6">
                                 <h3 class="text-2xl font-bold text-indigo-400 mb-2">E-commerce Website</h3>
                                 <p class="text-slate-400 mb-4 text-sm">React | Firebase | Stripe API</p>
@@ -315,7 +351,7 @@
                         </div>
 
                         <!-- Project Card 2 -->
-                        <div class="bg-slate-800 rounded-2xl overflow-hidden shadow-2xl border border-slate-700/50 transition duration-500 transform hover:-translate-y-2 hover:border-indigo-500">
+                        <div class="bg-slate-800 rounded-2xl overflow-hidden shadow-2xl border border-slate-700/50 transition duration-500 transform hover:-translate-y-2 hover:border-indigo-500 js-scroll-fade-up" style="transition-delay: 300ms;">
                             <div class="p-6">
                                 <h3 class="text-2xl font-bold text-indigo-400 mb-2">Real-time Chat App</h3>
                                 <p class="text-slate-400 mb-4 text-sm">React | Node.js | Socket.io</p>
@@ -333,10 +369,10 @@
 
                 <!-- Achievements Section -->
                 <section id="achievements" class="section-padding">
-                    <h2 class="text-4xl font-bold text-center mb-12 border-b-2 border-indigo-500/50 pb-2 inline-block mx-auto">Achievements</h2>
+                    <h2 class="text-4xl font-bold text-center mb-12 border-b-2 border-indigo-500/50 pb-2 inline-block mx-auto js-scroll-fade-up">Achievements</h2>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
                         <!-- Card 1: Programming Competitions -->
-                        <div class="bg-slate-800 p-6 rounded-2xl shadow-xl border border-slate-700 transition duration-300 hover:border-indigo-500/50 flex items-start space-x-4">
+                        <div class="bg-slate-800 p-6 rounded-2xl shadow-xl border border-slate-700 transition duration-300 hover:border-indigo-500/50 flex items-start space-x-4 js-scroll-fade-up" style="transition-delay: 100ms;">
                             <div class="bg-slate-700 p-3 rounded-full">
                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-indigo-400"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
                             </div>
@@ -347,7 +383,7 @@
                         </div>
 
                         <!-- Card 2: Open Source -->
-                        <div class="bg-slate-800 p-6 rounded-2xl shadow-xl border border-slate-700 transition duration-300 hover:border-indigo-500/50 flex items-start space-x-4">
+                        <div class="bg-slate-800 p-6 rounded-2xl shadow-xl border border-slate-700 transition duration-300 hover:border-indigo-500/50 flex items-start space-x-4 js-scroll-fade-up" style="transition-delay: 200ms;">
                              <div class="bg-slate-700 p-3 rounded-full">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-indigo-400"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
                             </div>
@@ -358,7 +394,7 @@
                         </div>
 
                         <!-- Card 3: Certifications -->
-                        <div class="bg-slate-800 p-6 rounded-2xl shadow-xl border border-slate-700 transition duration-300 hover:border-indigo-500/50 flex items-start space-x-4">
+                        <div class="bg-slate-800 p-6 rounded-2xl shadow-xl border border-slate-700 transition duration-300 hover:border-indigo-500/50 flex items-start space-x-4 js-scroll-fade-up" style="transition-delay: 300ms;">
                             <div class="bg-slate-700 p-3 rounded-full">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-indigo-400"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path><path d="m9 12 2 2 4-4"></path></svg>
                             </div>
@@ -369,7 +405,7 @@
                         </div>
                         
                         <!-- Card 4: Hackathons -->
-                        <div class="bg-slate-800 p-6 rounded-2xl shadow-xl border border-slate-700 transition duration-300 hover:border-indigo-500/50 flex items-start space-x-4">
+                        <div class="bg-slate-800 p-6 rounded-2xl shadow-xl border border-slate-700 transition duration-300 hover:border-indigo-500/50 flex items-start space-x-4 js-scroll-fade-up" style="transition-delay: 400ms;">
                             <div class="bg-slate-700 p-3 rounded-full">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-indigo-400"><path d="M12 2.69l.34 3.03 3.03.34-2.28 2.28.54 3.03-3.03-.54-3.03.54.54-3.03-2.28-2.28 3.03-.34L12 2.69z"></path><path d="M16 16.5l.34 3.03 3.03.34-2.28 2.28.54 3.03-3.03-.54-3.03.54.54-3.03-2.28-2.28 3.03-.34L16 16.5z"></path><path d="M8 7.5l.34 3.03 3.03.34-2.28 2.28.54 3.03-3.03-.54-3.03.54.54-3.03-2.28-2.28 3.03-.34L8 7.5z"></path></svg>
                             </div>
@@ -380,7 +416,7 @@
                         </div>
                         
                         <!-- Card 5: Leadership -->
-                        <div class="bg-slate-800 p-6 rounded-2xl shadow-xl border border-slate-700 transition duration-300 hover:border-indigo-500/50 flex items-start space-x-4 md:col-span-2 lg:col-span-1 lg:max-w-md mx-auto w-full">
+                        <div class="bg-slate-800 p-6 rounded-2xl shadow-xl border border-slate-700 transition duration-300 hover:border-indigo-500/50 flex items-start space-x-4 md:col-span-2 lg:col-span-1 lg:max-w-md mx-auto w-full js-scroll-fade-up" style="transition-delay: 500ms;">
                             <div class="bg-slate-700 p-3 rounded-full">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-indigo-400"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
                             </div>
@@ -394,21 +430,21 @@
 
                 <!-- 6. Education Section -->
                 <section id="education" class="section-padding">
-                    <h2 class="text-4xl font-bold text-center mb-12 border-b-2 border-indigo-500/50 pb-2 inline-block mx-auto">
+                    <h2 class="text-4xl font-bold text-center mb-12 border-b-2 border-indigo-500/50 pb-2 inline-block mx-auto js-scroll-fade-up">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block w-8 h-8 -mt-2 mr-2 text-indigo-400"><path d="M12 22l-8-6 8-6 8 6-8 6z"></path><path d="M12 22V12"></path><path d="M12 12L4 6l8-6 8 6-8 6z"></path></svg>
                         Education
                     </h2>
                     
                     <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
                         <!-- Education Card 1 -->
-                        <div class="bg-slate-800 p-6 rounded-2xl shadow-xl border border-slate-700 transition duration-300 hover:border-indigo-500/50">
+                        <div class="bg-slate-800 p-6 rounded-2xl shadow-xl border border-slate-700 transition duration-300 hover:border-indigo-500/50 js-scroll-fade-up" style="transition-delay: 150ms;">
                             <h3 class="text-xl font-bold text-white mb-1">Senior Secondary (PCM + CS)</h3>
                             <p class="text-indigo-400 font-medium mb-2">St. Mary's Convent School, Gajraula</p>
                             <p class="text-slate-400 text-sm">12th - 2023 | 10th - 2021</p>
                         </div>
 
                         <!-- Education Card 2 -->
-                        <div class="bg-slate-800 p-6 rounded-2xl shadow-xl border border-slate-700 transition duration-300 hover:border-indigo-500/50">
+                        <div class="bg-slate-800 p-6 rounded-2xl shadow-xl border border-slate-700 transition duration-300 hover:border-indigo-500/50 js-scroll-fade-up" style="transition-delay: 300ms;">
                             <h3 class="text-xl font-bold text-white mb-1">B.Tech in C.S & Engineering</h3>
                             <p class="text-indigo-400 font-medium mb-2">GLA University, Mathura</p>
                             <p class="text-slate-400 text-sm">Expected July 2027</p>
@@ -418,9 +454,9 @@
 
                 <!-- 7. Contact Section -->
                 <section id="contact" class="section-padding">
-                    <h2 class="text-4xl font-bold text-center mb-12 border-b-2 border-indigo-500/50 pb-2 inline-block mx-auto">Get In <span class="text-indigo-400">Touch</span></h2>
+                    <h2 class="text-4xl font-bold text-center mb-12 border-b-2 border-indigo-500/50 pb-2 inline-block mx-auto js-scroll-fade-up">Get In <span class="text-indigo-400">Touch</span></h2>
                     
-                    <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-12 bg-slate-800 p-8 rounded-2xl shadow-2xl border border-slate-700/50">
+                    <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-12 bg-slate-800 p-8 rounded-2xl shadow-2xl border border-slate-700/50 js-scroll-fade-up" style="transition-delay: 150ms;">
                         <!-- Left Column: Contact Info -->
                         <div>
                             <h3 class="text-2xl font-bold text-white mb-6">Contact Info</h3>
@@ -515,7 +551,32 @@
                 });
             });
         });
+
+        // --- NEW: Animation on Scroll ---
+        
+        // 1. Select all elements with the hook class
+        const scrollElements = document.querySelectorAll('.js-scroll-fade-up');
+
+        // 2. Create the observer
+        const scrollObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                // When the element is in view
+                if (entry.isIntersecting) {
+                    // Add the 'visible' class to trigger the animation
+                    entry.target.classList.add('is-visible');
+                    
+                    // 4. Stop observing it so it only animates once
+                    scrollObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1 // Trigger when 10% of the element is visible
+        });
+
+        // 3. Observe each element
+        scrollElements.forEach(el => {
+            scrollObserver.observe(el);
+        });
     </script>
 </body>
 </html>
-
