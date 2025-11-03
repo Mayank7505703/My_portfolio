@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mayank Sharma | Web & Software Developer</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Use Inter font family -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Custom colors for a sleek, dark aesthetic for subsequent sections */
+            --bg-dark: #0f172a; /* slate-900 */
+            --primary-color: #6366f1; /* indigo-500 */
+            --text-light: #f1f5f9; /* slate-100 */
+            --card-bg: #1e293b; /* slate-800 */
+            --accent-light: #818cf8; /* indigo-400 */
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            scroll-behavior: smooth;
+        }
+        .section-padding {
+            padding: 6rem 1rem;
+        }
+        /* Custom scrollbar for aesthetics */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1e293b;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #475569;
+            border-radius: 4px;
+        }
+        /* Timeline specific styling */
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 2px;
+            height: 100%;
+            background: #334155; /* slate-700 */
+        }
+        .timeline-dot {
+            position: absolute;
+            left: -8px;
+            top: 0.5rem;
+            width: 16px;
+            height: 16px;
+            background: var(--accent-light);
+            border-radius: 50%;
+            border: 3px solid var(--bg-dark);
+            box-shadow: 0 0 0 3px #1e293b;
+        }
+
+        /* --- Custom Hero Gradient & Image Styling --- */
+        .hero-gradient {
+            /* Gradient matching the reference image (Blue/Violet to Red) */
+            background: linear-gradient(180deg, #5c00b8 0%, #2a00b8 20%, #7d00b8 70%, #b8002e 100%);
+            /* Ensures it covers the entire viewport */
+            min-height: 100vh;
+        }
+        .hero-image-container {
+            /* Using an aggressive border-radius and scale to create a visually distinct, modern shape */
+            border-radius: 60% 40% 30% 70% / 60% 40% 70% 30%;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: all 0.5s ease;
+        }
+        .hero-image-container:hover {
+            border-radius: 40% 60% 70% 30% / 40% 60% 30% 70%;
+        }
+        .hero-text-shadow {
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-transparent">
+        <div class="max-w-6xl mx-auto flex justify-between items-center py-4 px-4 md:px-8">
+            <a href="#hero" class="text-2xl font-extrabold text-white hover:text-white transition duration-300 hero-text-shadow">
+                Mayank <span class="text-white">Sharma</span>
+            </a>
+            <nav class="hidden lg:flex space-x-6 text-white font-medium hero-text-shadow">
+                <a href="#about" class="hover:text-slate-200 transition duration-300">About</a>
+                <a href="#experience" class="hover:text-slate-200 transition duration-300">Experience</a>
+                <a href="#skills" class="hover:text-slate-200 transition duration-300">Skills</a>
+                <a href="#projects" class="hover:text-slate-200 transition duration-300">Projects</a>
+                <a href="#achievements" class="hover:text-slate-200 transition duration-300">Achievements</a>
+                <a href="#education" class="hover:text-slate-200 transition duration-300">Education</a>
+                <a href="#contact" class="px-3 py-1 bg-white text-indigo-700 rounded-full hover:bg-slate-200 transition duration-300 shadow-md">Get In Touch</a>
+            </nav>
+            <button id="mobile-menu-button" class="lg:hidden text-white focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </div>
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-slate-900 transition-all duration-300">
+            <nav class="flex flex-col space-y-2 p-4 text-slate-300">
+                <a href="#about" class="block py-2 px-3 hover:bg-slate-800 rounded-lg" onclick="document.getElementById('mobile-menu').classList.add('hidden')">About</a>
+                <a href="#experience" class="block py-2 px-3 hover:bg-slate-800 rounded-lg" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Experience</a>
+                <a href="#skills" class="block py-2 px-3 hover:bg-slate-800 rounded-lg" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Skills</a>
+                <a href="#projects" class="block py-2 px-3 hover:bg-slate-800 rounded-lg" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Projects</a>
+                <a href="#achievements" class="block py-2 px-3 hover:bg-slate-800 rounded-lg" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Achievements</a>
+                <a href="#education" class="block py-2 px-3 hover:bg-slate-800 rounded-lg" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Education</a>
+                <a href="#contact" class="block py-2 px-3 hover:bg-slate-800 rounded-lg" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- 1. Hero Section -->
+        <section id="hero" class="hero-gradient px-4 md:px-8 pt-24 pb-12 lg:pb-0 flex items-center">
+            <div class="max-w-6xl mx-auto flex flex-col lg:flex-row items-center justify-between w-full min-h-[85vh]">
+                
+                <!-- Left Column (Information) -->
+                <div class="lg:w-1/2 text-center lg:text-left pt-10 pb-16 lg:py-32">
+                    <h1 class="text-5xl sm:text-7xl font-extrabold leading-tight text-white hero-text-shadow">
+                        Hi, I'm <span class="text-indigo-300">Mayank Sharma</span>
+                    </h1>
+                    <p class="mt-4 text-3xl sm:text-4xl text-slate-100 font-medium hero-text-shadow">
+                        | Software Developer
+                    </p>
+                    <p class="mt-6 text-slate-200 max-w-lg mx-auto lg:mx-0 text-lg hero-text-shadow">
+                        Computer Science professional passionate about solving real-world problems using cutting-edge technology.
+                    </p>
+
+                    <!-- Buttons -->
+                    <div class="mt-10 flex flex-col sm:flex-row justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
+                        <a href="#projects" class="px-7 py-3 bg-white text-indigo-700 font-semibold rounded-xl shadow-lg hover:bg-slate-200 transition duration-300 transform hover:scale-[1.02] flex items-center justify-center">
+                            View My Work
+                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.5 12h-11M13 16l4-4-4-4"></path></svg>
+                        </a>
+                        <a href="#contact" class="px-7 py-3 border border-white text-white font-semibold rounded-xl hover:bg-white/20 transition duration-300 transform hover:scale-[1.02] flex items-center justify-center">
+                            Download Resume
+                        </a>
+                    </div>
+                    
+                    <!-- Social Icons Row -->
+                    <div class="mt-10 flex justify-center lg:justify-start space-x-6 text-white">
+                        <!-- LinkedIn -->
+                        <a href="https://www.linkedin.com/in/mayank-sharma-8555b6313/" target="_blank" class="hover:text-indigo-300 transition duration-300 transform hover:scale-110" aria-label="LinkedIn Profile">
+                            <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.98 0h-5v16h5v-8.243c0-3.151 3.737-3.411 3.737 0v8.243h5v-10.481c0-4.887-5.06-4.596-7.469-2.214z"/></svg>
+                        </a>
+                        <!-- GitHub (Code Icon) -->
+                        <a href="#" target="_blank" class="hover:text-indigo-300 transition duration-300 transform hover:scale-110" aria-label="GitHub Profile">
+                            <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.805 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.082-.743.081-.728.081-.728 1.205.084 1.839 1.237 1.839 1.237 1.07 1.831 2.809 1.309 3.491.997.107-.775.418-1.309.762-1.605-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.046.138 3.003.404 2.293-1.552 3.301-1.23 3.301-1.23.653 1.652.242 2.873.117 3.176.767.84 1.236 1.911 1.236 3.221 0 4.609-2.807 5.624-5.479 5.923.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.802 24 17.309 24 12c0-6.627-5.373-12-12-12z"/></svg>
+                        </a>
+                         <!-- LeetCode -->
+                        <a href="https://leetcode.com/u/mayanksharma1234321/" target="_blank" class="hover:text-indigo-300 transition duration-300 transform hover:scale-110" aria-label="LeetCode Profile">
+                            <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                        </a>
+                         <!-- Email/Contact -->
+                        <a href="mailto:karansharma90900@gmail.com" target="_blank" class="hover:text-indigo-300 transition duration-300 transform hover:scale-110" aria-label="Email Address">
+                            <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 12.713l-11.751-8.799h23.502l-11.751 8.799zm-.001 1.605l-11.998-9.048v14.73h23.997v-14.73l-11.999 9.048z"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Column (Image) -->
+                <div class="lg:w-1/2 flex justify-center lg:justify-end py-10 lg:py-0">
+                    <div class="hero-image-container relative w-64 h-64 sm:w-80 sm:h-80 bg-white/10 flex items-center justify-center">
+                         <!-- FIXED: The image is now a background for this div -->
+                        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://i.ibb.co/tMVM0GtY/image6.jpg');">
+                        </div>
+                        <div class="absolute inset-0 bg-black/10"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Scroll Down Indicator -->
+            <div class="absolute bottom-5 left-1/2 transform -translate-x-1/2">
+                <a href="#about" class="animate-bounce text-white p-2 rounded-full border-2 border-white hover:border-indigo-300 hover:text-indigo-300 transition duration-300" aria-label="Scroll Down">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </a>
+            </div>
+        </section>
+        
+        <!-- The rest of the page content starts here, with the dark background -->
+        <div class="bg-slate-900">
+            <main class="max-w-6xl mx-auto">
+                
+                <!-- 2. About Me Section -->
+                <section id="about" class="section-padding">
+                    <h2 class="text-4xl font-bold text-center mb-12 border-b-2 border-indigo-500/50 pb-2 inline-block mx-auto">About <span class="text-indigo-400">Me</span></h2>
+                    <div class="bg-slate-800 p-8 rounded-2xl shadow-xl border border-slate-700/50 transition duration-300 hover:border-indigo-500/50">
+                        <p class="text-lg text-slate-300 leading-relaxed mb-6">
+                            I am Mayank Sharma, a passionate and result-oriented developer specializing in creating user-friendly web experiences. My expertise lies in building modern websites and applications from the ground up, ensuring they are both functional and visually appealing.
+                        </p>
+                        <p class="text-lg text-slate-300 leading-relaxed mb-6">
+                            My professional focus is on **Frontend** development using modern tools like **React.js** and **Tailwind CSS**. I also have experience with **Backend** technologies such as **Node.js** and enjoy bringing ideas to life with clean, efficient code.
+                        </p>
+                        <p class="text-lg text-slate-300 leading-relaxed">
+                            I thrive on challenge and continuous learning, always aiming to deliver clean code and maintainable solutions. Whether it's developing new features or tackling complex algorithmic problems (check out my <a href="https://leetcode.com/u/mayanksharma1234321/" target="_blank" class="text-indigo-400 hover:text-indigo-300 underline font-medium">LeetCode profile</a>!), I am committed to technical excellence.
+                        </p>
+                    </div>
+                </section>
+                
+                <!-- 3. Experience Timeline Section -->
+                <section id="experience" class="section-padding">
+                    <h2 class="text-4xl font-bold text-center mb-16 border-b-2 border-indigo-500/50 pb-2 inline-block mx-auto">Work <span class="text-indigo-400">Experience</span></h2>
+                    
+                    <div class="relative max-w-3xl mx-auto">
+                        
+                        <!-- Timeline Item 1 -->
+                        <div class="timeline-item relative pl-10 pb-12">
+                            <div class="timeline-dot"></div>
+                            <div class="bg-slate-800 p-6 rounded-xl shadow-lg border border-slate-700 transition duration-300 hover:border-indigo-500/50">
+                                <p class="text-sm text-indigo-400 font-semibold mb-1">Jan 2022 - Present</p>
+                                <h3 class="text-xl font-bold text-white">Junior Web Developer</h3>
+                                <p class="text-md text-slate-400 mb-3">Tech Innovators Inc.</p>
+                                <ul class="list-disc list-inside text-slate-300 space-y-2 text-sm">
+                                    <li>Developed and maintained core features for client websites using React, improving user engagement metrics.</li>
+                                    <li>Collaborated with the design team to implement responsive and pixel-perfect user interfaces with Tailwind CSS.</li>
+                                    <li>Helped build and test REST APIs to connect the frontend application with backend services.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Timeline Item 2 -->
+                        <div class="timeline-item relative pl-10 pb-12">
+                            <div class="timeline-dot"></div>
+                            <div class="bg-slate-800 p-6 rounded-xl shadow-lg border border-slate-700 transition duration-300 hover:border-indigo-500/50">
+                                <p class="text-sm text-indigo-400 font-semibold mb-1">Aug 2019 - Dec 2021</p>
+                                <h3 class="text-xl font-bold text-white">Freelance Developer</h3>
+                                <p class="text-md text-slate-400 mb-3">Self-Employed</p>
+                                <ul class="list-disc list-inside text-slate-300 space-y-2 text-sm">
+                                    <li>Designed and built 5+ client websites from concept to launch using HTML, CSS, and JavaScript.</li>
+                                    <li>Managed project timelines and client communication to ensure timely delivery of projects.</li>
+                                    <li>Contributed to front-end standard guidelines, resulting in more consistent and accessible UIs.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <!-- End Dot -->
+                        <div class="timeline-dot" style="top: auto; bottom: 0; left: -8px; box-shadow: 0 0 0 3px #1e293b;"></div>
+                        <div class="absolute bottom-0 left-0 w-2 h-1 bg-slate-900"></div> 
+                    </div>
+                </section>
+
+                <!-- 4. Skills Section -->
+                <section id="skills" class="section-padding">
+                    <h2 class="text-4xl font-bold text-center mb-12 border-b-2 border-indigo-500/50 pb-2 inline-block mx-auto">Technical <span class="text-indigo-400">Skills</span></h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        
+                        <!-- Skill Category: Languages -->
+                        <div class="bg-slate-800 p-6 rounded-2xl shadow-xl border border-slate-700/50 transition duration-300 hover:border-indigo-500/50 hover:-translate-y-1">
+                            <h3 class="text-2xl font-semibold mb-4 text-indigo-400">Languages</h3>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-slate-700 text-slate-300 text-sm font-medium px-3 py-1 rounded-full">Python</span>
+                                <span class="bg-slate-700 text-slate-300 text-sm font-medium px-3 py-1 rounded-full">Java</span>
+                                <span class="bg-slate-700 text-slate-300 text-sm font-medium px-3 py-1 rounded-full">JavaScript</span>
+                                <span class="bg-slate-700 text-slate-300 text-sm font-medium px-3 py-1 rounded-full">TypeScript</span>
+                                <span class="bg-slate-700 text-slate-300 text-sm font-medium px-3 py-1 rounded-full">C</span>
+                                <span class="bg-slate-700 text-slate-300 text-sm font-medium px-3 py-1 rounded-full">SQL</span>
+                            </div>
+                        </div>
+
+                        <!-- Skill Category: Web Development -->
+                        <div class="bg-slate-800 p-6 rounded-2xl shadow-xl border border-slate-700/50 transition duration-300 hover:border-indigo-500/50 hover:-translate-y-1">
+                            <h3 class="text-2xl font-semibold mb-4 text-indigo-400">Web Development</h3>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-slate-700 text-slate-300 text-sm font-medium px-3 py-1 rounded-full">React.js</span>
+                                <span class="bg-slate-700 text-slate-300 text-sm font-medium px-3 py-1 rounded-full">Node.js</span>
+                                <span class="bg-slate-700 text-slate-300 text-sm font-medium px-3 py-1 rounded-full">HTML</span>
+                                <span class="bg-slate-700 text-slate-300 text-sm font-medium px-3 py-1 rounded-full">CSS</span>
+                                <span class="bg-slate-700 text-slate-300 text-sm font-medium px-3 py-1 rounded-full">Tailwind CSS</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Skill Category: Tools & Databases -->
+                        <div class="bg-slate-800 p-6 rounded-2xl shadow-xl border border-slate-700/50 transition duration-300 hover:border-indigo-500/50 hover:-translate-y-1">
+                            <h3 class="text-2xl font-semibold mb-4 text-indigo-400">Tools & Databases</h3>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-slate-700 text-slate-300 text-sm font-medium px-3 py-1 rounded-full">Git</span>
+                                <span class="bg-slate-700 text-slate-300 text-sm font-medium px-3 py-1 rounded-full">Firebase</span>
+                                <span class="bg-slate-700 text-slate-300 text-sm font-medium px-3 py-1 rounded-full">Postman</span>
+                                <span class="bg-slate-700 text-slate-300 text-sm font-medium px-3 py-1 rounded-full">MySQL</span>
+                                <span class="bg-slate-700 text-slate-300 text-sm font-medium px-3 py-1 rounded-full">MongoDB</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- 5. Projects Section -->
+                <section id="projects" class="section-padding">
+                    <h2 class="text-4xl font-bold text-center mb-12 border-b-2 border-indigo-500/50 pb-2 inline-block mx-auto">Featured <span class="text-indigo-400">Projects</span></h2>
+
+                    <div class="grid md:grid-cols-2 gap-8">
+                        
+                        <!-- Project Card 1 -->
+                        <div class="bg-slate-800 rounded-2xl overflow-hidden shadow-2xl border border-slate-700/50 transition duration-500 transform hover:-translate-y-2 hover:border-indigo-500">
+                            <div class="p-6">
+                                <h3 class="text-2xl font-bold text-indigo-400 mb-2">E-commerce Website</h3>
+                                <p class="text-slate-400 mb-4 text-sm">React | Firebase | Stripe API</p>
+                                <p class="text-slate-300 mb-4">
+                                    A modern e-commerce site for browsing products, adding items to a cart, and completing checkout with a mock payment system.
+                                </p>
+                                <div class="flex space-x-4">
+                                    <a href="https://reactjs-ecommerce-app.vercel.app/" class="text-sm px-4 py-2 bg-indigo-600 rounded-full hover:bg-indigo-700 transition duration-300">Live Demo</a>
+                                    <a href="#" class="text-sm px-4 py-2 border border-slate-600 rounded-full text-slate-300 hover:bg-slate-700 transition duration-300">Code (GitHub)</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Project Card 2 -->
+                        <div class="bg-slate-800 rounded-2xl overflow-hidden shadow-2xl border border-slate-700/50 transition duration-500 transform hover:-translate-y-2 hover:border-indigo-500">
+                            <div class="p-6">
+                                <h3 class="text-2xl font-bold text-indigo-400 mb-2">Real-time Chat App</h3>
+                                <p class="text-slate-400 mb-4 text-sm">React | Node.js | Socket.io</p>
+                                <p class="text-slate-300 mb-4">
+                                    Built a simple real-time chat application where users can join a room and send messages that appear instantly for everyone else.
+                                </p>
+                                <div class="flex space-x-4">
+                                    <a href="#" class="text-sm px-4 py-2 bg-indigo-600 rounded-full hover:bg-indigo-700 transition duration-300">Live Demo</a>
+                                    <a href="#" class="text-sm px-4 py-2 border border-slate-600 rounded-full text-slate-300 hover:bg-slate-700 transition duration-300">Code (GitHub)</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Achievements Section -->
+                <section id="achievements" class="section-padding">
+                    <h2 class="text-4xl font-bold text-center mb-12 border-b-2 border-indigo-500/50 pb-2 inline-block mx-auto">Achievements</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                        <!-- Card 1: Programming Competitions -->
+                        <div class="bg-slate-800 p-6 rounded-2xl shadow-xl border border-slate-700 transition duration-300 hover:border-indigo-500/50 flex items-start space-x-4">
+                            <div class="bg-slate-700 p-3 rounded-full">
+                               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-indigo-400"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-white mb-1">Programming Competitions</h3>
+                                <p class="text-slate-400 text-sm">Recognized in national-level programming contests, including internal university hackathons and external challenges.</p>
+                            </div>
+                        </div>
+
+                        <!-- Card 2: Open Source -->
+                        <div class="bg-slate-800 p-6 rounded-2xl shadow-xl border border-slate-700 transition duration-300 hover:border-indigo-500/50 flex items-start space-x-4">
+                             <div class="bg-slate-700 p-3 rounded-full">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-indigo-400"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-white mb-1">Open Source & Community Contribution</h3>
+                                <p class="text-slate-400 text-sm">Contributed to open-source repositories and supported peers in student developer clubs and coding events.</p>
+                            </div>
+                        </div>
+
+                        <!-- Card 3: Certifications -->
+                        <div class="bg-slate-800 p-6 rounded-2xl shadow-xl border border-slate-700 transition duration-300 hover:border-indigo-500/50 flex items-start space-x-4">
+                            <div class="bg-slate-700 p-3 rounded-full">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-indigo-400"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path><path d="m9 12 2 2 4-4"></path></svg>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-white mb-1">Virtual Experience Certifications</h3>
+                                <p class="text-slate-400 text-sm">Completed simulations by top firms like Deloitte, JPMorgan, AWS, and Tata Group through Forage.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Card 4: Hackathons -->
+                        <div class="bg-slate-800 p-6 rounded-2xl shadow-xl border border-slate-700 transition duration-300 hover:border-indigo-500/50 flex items-start space-x-4">
+                            <div class="bg-slate-700 p-3 rounded-full">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-indigo-400"><path d="M12 2.69l.34 3.03 3.03.34-2.28 2.28.54 3.03-3.03-.54-3.03.54.54-3.03-2.28-2.28 3.03-.34L12 2.69z"></path><path d="M16 16.5l.34 3.03 3.03.34-2.28 2.28.54 3.03-3.03-.54-3.03.54.54-3.03-2.28-2.28 3.03-.34L16 16.5z"></path><path d="M8 7.5l.34 3.03 3.03.34-2.28 2.28.54 3.03-3.03-.54-3.03.54.54-3.03-2.28-2.28 3.03-.34L8 7.5z"></path></svg>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-white mb-1">Hackathons & Internships</h3>
+                                <p class="text-slate-400 text-sm">Engaged in virtual internships and hackathon sprints focused on real-world problem solving.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Card 5: Leadership -->
+                        <div class="bg-slate-800 p-6 rounded-2xl shadow-xl border border-slate-700 transition duration-300 hover:border-indigo-500/50 flex items-start space-x-4 md:col-span-2 lg:col-span-1 lg:max-w-md mx-auto w-full">
+                            <div class="bg-slate-700 p-3 rounded-full">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-indigo-400"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-white mb-1">Leadership & Collaboration</h3>
+                                <p class="text-slate-400 text-sm">Actively collaborated in team projects during internships and academic coursework.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 6. Education Section -->
+                <section id="education" class="section-padding">
+                    <h2 class="text-4xl font-bold text-center mb-12 border-b-2 border-indigo-500/50 pb-2 inline-block mx-auto">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block w-8 h-8 -mt-2 mr-2 text-indigo-400"><path d="M12 22l-8-6 8-6 8 6-8 6z"></path><path d="M12 22V12"></path><path d="M12 12L4 6l8-6 8 6-8 6z"></path></svg>
+                        Education
+                    </h2>
+                    
+                    <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                        <!-- Education Card 1 -->
+                        <div class="bg-slate-800 p-6 rounded-2xl shadow-xl border border-slate-700 transition duration-300 hover:border-indigo-500/50">
+                            <h3 class="text-xl font-bold text-white mb-1">Senior Secondary (PCM + CS)</h3>
+                            <p class="text-indigo-400 font-medium mb-2">St. Mary's Convent School, Gajraula</p>
+                            <p class="text-slate-400 text-sm">12th - 2023 | 10th - 2021</p>
+                        </div>
+
+                        <!-- Education Card 2 -->
+                        <div class="bg-slate-800 p-6 rounded-2xl shadow-xl border border-slate-700 transition duration-300 hover:border-indigo-500/50">
+                            <h3 class="text-xl font-bold text-white mb-1">B.Tech in C.S & Engineering</h3>
+                            <p class="text-indigo-400 font-medium mb-2">GLA University, Mathura</p>
+                            <p class="text-slate-400 text-sm">Expected July 2027</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 7. Contact Section -->
+                <section id="contact" class="section-padding">
+                    <h2 class="text-4xl font-bold text-center mb-12 border-b-2 border-indigo-500/50 pb-2 inline-block mx-auto">Get In <span class="text-indigo-400">Touch</span></h2>
+                    
+                    <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-12 bg-slate-800 p-8 rounded-2xl shadow-2xl border border-slate-700/50">
+                        <!-- Left Column: Contact Info -->
+                        <div>
+                            <h3 class="text-2xl font-bold text-white mb-6">Contact Info</h3>
+                            <div class="space-y-6">
+                                <!-- Location -->
+                                <div class="flex items-start space-x-4">
+                                    <div class="bg-slate-700 p-3 rounded-full">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-indigo-400"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-lg font-semibold text-slate-200">Location</h4>
+                                        <p class="text-slate-400">Jaisinghpura, Mathra, UttarPradesh, India</p>
+                                    </div>
+                                </div>
+                                <!-- Phone -->
+                                <div class="flex items-start space-x-4">
+                                    <div class="bg-slate-700 p-3 rounded-full">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-indigo-400"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-lg font-semibold text-slate-200">Phone</h4>
+                                        <p class="text-slate-400">+91 7505127361</p>
+                                    </div>
+                                </div>
+                                <!-- Email -->
+                                <div class="flex items-start space-x-4">
+                                    <div class="bg-slate-700 p-3 rounded-full">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-indigo-400"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-lg font-semibold text-slate-200">Email</h4>
+                                        <p class="text-slate-400">karansharma90900@gmail.com</p>
+                                    </div>
+                                </div>
+                            </div>
+                             <h3 class="text-2xl font-bold text-white mt-10 mb-4">Connect With Me</h3>
+                             <div class="flex space-x-4 text-slate-400">
+                                 <a href="https://www.linkedin.com/in/mayank-sharma-8555b6313/" target="_blank" class="p-3 bg-slate-700 rounded-full hover:bg-indigo-600 hover:text-white transition duration-300 transform hover:scale-110" aria-label="LinkedIn Profile"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.98 0h-5v16h5v-8.243c0-3.151 3.737-3.411 3.737 0v8.243h5v-10.481c0-4.887-5.06-4.596-7.469-2.214z"/></svg></a>
+                                 <a href="#" target="_blank" class="p-3 bg-slate-700 rounded-full hover:bg-indigo-600 hover:text-white transition duration-300 transform hover:scale-110" aria-label="GitHub Profile"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.805 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.082-.743.081-.728.081-.728 1.205.084 1.839 1.237 1.839 1.237 1.07 1.831 2.809 1.309 3.491.997.107-.775.418-1.309.762-1.605-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.046.138 3.003.404 2.293-1.552 3.301-1.23 3.301-1.23.653 1.652.242 2.873.117 3.176.767.84 1.236 1.911 1.236 3.221 0 4.609-2.807 5.624-5.479 5.923.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.802 24 17.309 24 12c0-6.627-5.373-12-12-12z"/></svg></a>
+                                 <a href="https://leetcode.com/u/mayanksharma1234321/" target="_blank" class="p-3 bg-slate-700 rounded-full hover:bg-indigo-600 hover:text-white transition duration-300 transform hover:scale-110" aria-label="LeetCode Profile"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg></a>
+                             </div>
+                        </div>
+
+                        <!-- Right Column: Contact Form -->
+                        <form action="#" method="POST">
+                            <div class="space-y-6">
+                                <div>
+                                    <label for="name" class="block text-sm font-medium text-slate-300 mb-2">Name</label>
+                                    <input type="text" name="name" id="name" required class="block w-full bg-slate-700 border-slate-600 rounded-lg shadow-sm py-3 px-4 text-slate-200 focus:ring-indigo-500 focus:border-indigo-500 transition">
+                                </div>
+                                <div>
+                                    <label for="email" class="block text-sm font-medium text-slate-300 mb-2">Email</label>
+                                    <input type="email" name="email" id="email" required class="block w-full bg-slate-700 border-slate-600 rounded-lg shadow-sm py-3 px-4 text-slate-200 focus:ring-indigo-500 focus:border-indigo-500 transition">
+                                </div>
+                                <div>
+                                    <label for="message" class="block text-sm font-medium text-slate-300 mb-2">Message</label>
+                                    <textarea id="message" name="message" rows="4" required class="block w-full bg-slate-700 border-slate-600 rounded-lg shadow-sm py-3 px-4 text-slate-200 focus:ring-indigo-500 focus:border-indigo-500 transition"></textarea>
+                                </div>
+                                <div>
+                                    <button type="submit" class="w-full justify-center py-3 px-6 border border-transparent shadow-sm text-base font-medium rounded-full text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 focus:ring-offset-slate-800 transition transform hover:scale-[1.02]">
+                                        Send Message
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 border-t border-indigo-500/20">
+        <div class="max-w-6xl mx-auto py-8 px-4 md:px-8 text-center text-slate-400 text-sm">
+            <p>&copy; 2024 Mayank Sharma. All rights reserved.</p>
+            <p class="mt-2">Built with <span class="text-red-500">&hearts;</span> and Tailwind CSS.</p>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript for mobile menu toggling
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
+        // Optional: Smooth scrolling for all internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
